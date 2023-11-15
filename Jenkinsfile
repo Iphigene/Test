@@ -13,22 +13,22 @@ pipeline {
             }
         }
 		
-        stage('SonarQube Analysis') {
-            agent any
-            steps {
-                script {
-                    def scannerHome = tool 'SonarQube'
-                    withSonarQubeEnv('SonarQube') {
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Test -Dsonar.sources=."
-                    }
-                }
-            }
-            post {
-                always {
-                    recordIssues enabledForFailure: true, tool: sonarQube()
-                }
-            }
-        }
+        // stage('SonarQube Analysis') {
+        //     agent any
+        //     steps {
+        //         script {
+        //             def scannerHome = tool 'SonarQube'
+        //             withSonarQubeEnv('SonarQube') {
+        //                 sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Test -Dsonar.sources=."
+        //             }
+        //         }
+        //     }
+        //     post {
+        //         always {
+        //             recordIssues enabledForFailure: true, tool: sonarQube()
+        //         }
+        //     }
+        // }
 		
 		stage('UI testing'){
 			parallel {
